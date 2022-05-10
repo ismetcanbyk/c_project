@@ -51,6 +51,7 @@ void main()
 
     ogr.sifre = sifreBul(ogr.ogrNum);
 
+
     if(ogr.sifre==giriSifre){
         printf("giris basarili");
     }else{printf("Hatali Parola"); printf("\n"); goto TRY;}
@@ -98,33 +99,22 @@ void reSezar(size_t x, char *a)
                    a[i]=a[i]+26;
                 }
         }
-
     }
-
-
-
 }
 
 int sifreBul(int b){
-    int key=0;
-    int x, y;
-    for(int i=0;i<=9;i++){
-
-
-            x = (b % 10);
-        b= b/10;
-        if(x==7){y=7;}
-        else if(x==5){y=5;}
-        else if(x==3){y=3;}
-        else if(x==2){y=2;}
-        else if(y>key){
-        key=y;
-         }
-
+    int i;
+    for(i=2;b>1;i++){
+        while(b%i==0)
+        {
+            b=b/i;
+        }
 
     }
-    return key;
+    return i-1;
 }
+
+
 
 void write(){
     FILE *enc;
