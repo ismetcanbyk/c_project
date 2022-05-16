@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void sezar(size_t x, char *a);
-void reSezar(size_t x, char *a);
+int sonNumara(int a);
+void sezar(size_t x, char *a, int y);
+void reSezar(size_t x, char *a, int y);
 int sifreBul(int b);
 void read();
 void write();
@@ -14,7 +15,7 @@ struct ogrenci{
     int ogrNum;
     int sifre;
 }ogr;
-
+int sNum;
 void main()
 {
 
@@ -25,25 +26,30 @@ void main()
 
     size_t sizeName = sizeof(ogr.name)/2;
 
-    sezar(sizeName, ogr.name);
+
 
     printf("\n");
 
     printf("Soyad girin:");
     scanf("%s",&ogr.surname);
 
+    printf("\n");
+
+    printf("Ogrenci Numarasi Gir:");
+    scanf("%d",&ogr.ogrNum);
+    sonNumara(ogr.ogrNum);
+    printf("\n");
 
     size_t sizeSurname = sizeof(ogr.surname)/2;
 
-    sezar(sizeSurname, ogr.surname);
+    sezar(sizeName, ogr.name, sNum);
+    sezar(sizeSurname, ogr.surname, sNum);
+
 
 
     write();
 
-    printf("\n");
-    printf("Ogrenci Numarasi Gir:");
-    scanf("%d",&ogr.ogrNum);
-    printf("\n");
+
     TRY:
     printf("Sifre Gir:");
     scanf("%d",&giriSifre);
@@ -59,8 +65,8 @@ void main()
     printf("\n\n");
 
     read();
-    reSezar(sizeName, ogr.name);
-    reSezar(sizeSurname, ogr.surname);
+    reSezar(sizeName, ogr.name, sNum);
+    reSezar(sizeSurname, ogr.surname, sNum);
 
     printf("\n\n");
 
@@ -74,27 +80,38 @@ void main()
 
 }
 
-void sezar(size_t x, char *a)
+void sezar(size_t x, char *a, int y)
 {
-    for(int i=0;i<x;i++){
 
+    for(int i=0;i<x;i++){
         if(a[i]!='\0'){
-                a[i]=a[i]+5;
-                if(a[i]>122){
+                if(a[i]+y>122){
                    a[i]=a[i]-26;
                 }
+            a[i]=a[i]+y;
         }
-
     }
 }
 
+int sonNumara (int a){
 
-void reSezar(size_t x, char *a)
+    sNum=a%10;
+    while(sNum==0){
+        a=a/10;
+        sNum=a%10;
+
+    }
+
+    return sNum;
+}
+
+
+void reSezar(size_t x, char *a, int y)
 {
     for(int i=0;i<x;i++){
 
         if(a[i]!='\0'){
-                a[i]=a[i]-5;
+                a[i]=a[i]-y;
                 if(a[i]<97){
                    a[i]=a[i]+26;
                 }

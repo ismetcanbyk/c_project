@@ -1,22 +1,23 @@
-#include <stdio.h>
-#include <string.h>
 int main()
 {
+    int num,x;
+    printf("numara:");
+    scanf("%d",&num);
+    printf("\n");
 
- int sayi;
- printf("Bir sayi degeri giriniz...\n");
- scanf("%d",&sayi);
 
- for(int i=2;sayi>1;i++)
- {
-  while(sayi%i==0)
-  {
+    x=num%10;
 
-   printf("%d\t",i);
-   sayi=sayi/i;
+    while(x==0){
+        num=num/10;
+        x=num%10;
+    }
 
-  }
- }
 
- return 0;
+    printf("x=%d",x);
+
+
+
+    return 0;
 }
+
